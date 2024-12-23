@@ -1,0 +1,103 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track My Order</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login-container" id="loginSection">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="login-btn">Ingresar</button>
+            </form>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="orders-container" id="ordersSection" style="display: none;" >
+            <header>
+                <h1>Mis Pedidos</h1>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </header>
+            
+            
+            <div class="orders-list" id="ordersList" onclick="toggleModal()">
+                <!-- Orders will be inserted here by JavaScript -->
+                 <!-- https://codepen.io/candroo/pen/wKEwRL -->
+                </div>
+              </div>
+              <div class="modal" id="orderModal">
+                <div class="modal-content">
+                  <div class="details-grid">
+                    <div class="detail-item">
+                      <strong>Fecha de pedido:</strong> 19/12/2024
+                    </div>
+                    <div class="detail-item">
+                      <strong>Tiempo estimado:</strong> 2 días
+                    </div>
+                    <div class="detail-item">
+                      <strong>Cliente:</strong> Juan Pérez
+                    </div>
+                    <div class="detail-item">
+                      <strong>Prioridad:</strong> Alta
+                    </div>
+                    <div class="detail-item">
+                      <strong>Ubicación:</strong> Almacén A
+                    </div>
+                    <div class="detail-item">
+                      <strong>Estado:</strong> En proceso
+                    </div>
+                    <button class="invoice-btn">Ver Factura</button>
+                  </div>
+                </div>
+              </div>
+        <!-- <div class="order-details" style="display: none;" id="elementomodal">
+            <div class="details-grid">
+              <div>
+                <h3>Cliente:</h3>
+                <p>Juan Pérez</p>
+              </div>
+              <div>
+                <h3>ID:</h3>
+                <p>#12345</p>
+              </div>
+              <div>
+                <h3>Costo Total:</h3>
+                <p>$1,500.00</p>
+              </div>
+            </div>
+            <button class="invoice-btn">Ver Factura</button>
+          </div>
+         </div> -->
+    </div>
+    <script src="script.js"></script>
+    <script>
+//         function toggleDetails(element) {
+//   const details = document.querySelector('.order-details');
+//   if (details) {
+//     details.style.display = details.style.display === 'none' ? 'block' : 'none';
+//   }
+// }
+function toggleModal() {
+        document.getElementById('orderModal').classList.toggle('show');
+      }
+    </script>
+</body>
+</html>
+
+

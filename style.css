@@ -1,0 +1,277 @@
+/* styles.css */
+:root {
+    --primary-color: #FFD700;
+    --secondary-color: #333;
+    --background-color: #f5f5f5;
+    --card-background: #fff;
+    --text-color: #333;
+    --success-color: #4CAF50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Login Styles */
+.login-container {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--secondary-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: var(--secondary-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+/* Orders Styles */
+.orders-container {
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.order-card {
+    background: var(--card-background);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.status-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+.status-dot.active {
+    background: var(--primary-color);
+}
+
+.status-line {
+    flex: 1;
+    height: 2px;
+    background: #ddd;
+    margin: 9px 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .login-container {
+        margin: 20px auto;
+        padding: 1.5rem;
+    }
+    
+    .order-card {
+        padding: 1rem;
+    }
+}
+.change-password-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.change-password-link a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.change-password-link a:hover {
+    text-decoration: underline;
+}
+
+.password-changed-message {
+    background-color: var(--success-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.card {
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: white;
+    cursor: pointer;
+    margin: 20px auto;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+  }
+  
+  .active {
+    background: #FFD700;
+  }
+  
+  .inactive {
+    background: #D3D3D3;
+  }
+  
+  .progress::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #D3D3D3;
+    top: 12px;
+  }
+  
+  .step-text {
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .modal {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+  }
+  
+  .modal.show {
+    max-height: 300px;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .detail-item {
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+  }
+  .invoice-btn {
+    background: #FFD700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+   }
+  
+  
+  
+
+
