@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track My Order</title>
+    <title>TU PEDIDO EN ALESSIA</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -36,12 +38,13 @@
             </header>
             
             
-            <div class="orders-list" id="ordersList" onclick="toggleModal()">
+            
+            <div class="orders-list" id="ordersList"  data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                 <!-- Orders will be inserted here by JavaScript -->
                  <!-- https://codepen.io/candroo/pen/wKEwRL -->
                 </div>
               </div>
-              <div class="modal" id="orderModal">
+              <div  class="collapse collapse-horizontal" id="collapseWidthExample">
                 <div class="modal-content">
                   <div class="details-grid">
                     <div class="detail-item">
@@ -62,7 +65,8 @@
                     <div class="detail-item">
                       <strong>Estado:</strong> En proceso
                     </div>
-                    <button class="invoice-btn">Ver Factura</button>
+                    <button class="invoice-btn" onclick="window.location.href ='https://sistema.ncontrol.mx/PortalCliente/Comprobante40/DE2364C4-1CBB-9243-932F-3F5D394771F4'">Ver Factura</button>
+                    <button class="invoice-btn" onclick="window.location.href = 'https://www.paquetexpress.com.mx/rastreo/MEX01WWA194361'">Guia Pedido</button>
                   </div>
                 </div>
               </div>
@@ -93,9 +97,9 @@
 //     details.style.display = details.style.display === 'none' ? 'block' : 'none';
 //   }
 // }
-function toggleModal() {
-        document.getElementById('orderModal').classList.toggle('show');
-      }
+// function toggleModal() {
+//         document.getElementById('orderModal').classList.toggle('show');
+//       }
     </script>
 </body>
 </html>

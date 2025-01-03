@@ -1,9 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',  () => {
     const loginForm = document.getElementById('loginForm');
     const loginSection = document.getElementById('loginSection');
     const ordersSection = document.getElementById('ordersSection');
     const ordersList = document.getElementById('ordersList');
     const logoutBtn = document.getElementById('logoutBtn');
+
+    // const facturas = [
+
+    //     {id: 3, link:"https://sistema.ncontrol.mx/PortalCliente/Comprobante40/7F4471EF-48D9-6C4E-AEEB-7F011104FB7B"},
+    //     {id: 4, link:"https://sistema.ncontrol.mx/PortalCliente/Comprobante40/DE2364C4-1CBB-9243-932F-3F5D394771F4"}
+
+    // ]
 
     // Sample user data (in a real app, this would be in a backend)
     const validUser = {
@@ -17,6 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 4, pieces: 100, status: 2 },
         { id: 5, pieces: 100, status: 1 }
     ];
+
+    // function asignarLinksFacturas() {
+    //     const botonesFactura = document.querySelectorAll('.invoice-btn');
+        
+    //     botonesFactura.forEach((boton, index) => {
+    //         if (facturas[index]) {
+    //             boton.addEventListener('click', () => {
+    //                 window.open(facturas[index].link, '_blank');
+    //             });
+    //         }
+    //     });
+        
+    // }
+    // document.addEventListener('DOMContentLoaded', asignarLinksFacturas);
 
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
