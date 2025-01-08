@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded',  () => {
+
     const loginForm = document.getElementById('loginForm');
     const loginSection = document.getElementById('loginSection');
     const ordersSection = document.getElementById('ordersSection');
@@ -39,6 +40,37 @@ document.addEventListener('DOMContentLoaded',  () => {
     // }
     // document.addEventListener('DOMContentLoaded', asignarLinksFacturas);
 
+
+window.addEventListener('load', obtenerDatos());
+
+
+async function obtenerDatos() {
+    try {
+      const response = await fetch('/datos/base_status.xlsx', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      // Verificar el tipo de contenido
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('La respuesta no es JSON');
+      }
+      
+      const datos = await response.json();
+      console.log(datos,'aqui estan los malditos datos');
+      displayOrders(datos);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('email').value;
@@ -47,7 +79,8 @@ document.addEventListener('DOMContentLoaded',  () => {
         if (email === validUser.email && password === validUser.password) {
             loginSection.style.display = 'none';
             ordersSection.style.display = 'block';
-            displayOrders();
+            obtenerDatos();
+            
         } else {
             alert('Credenciales inválidas');
         }
@@ -59,7 +92,7 @@ document.addEventListener('DOMContentLoaded',  () => {
         loginForm.reset();
     });
 
-    function displayOrders() {
+    function displayOrders(orders) {
         ordersList.innerHTML = '';
         orders.forEach(order => {
             const orderCard = createOrderCard(order);
@@ -72,8 +105,8 @@ document.addEventListener('DOMContentLoaded',  () => {
         card.className = 'order-card';
         
         card.innerHTML = `
-            <h3>PEDIDO ${order.id}</h3>
-            <p>CANTIDAD DE PIEZAS: ${order.pieces}</p>
+            <h3>PEDIDO ${order.num_pedido}</h3>
+            <p>CANTIDAD DE PIEZAS: ${order.cantidad_piezas}</p>
             <div class="order-status">
                 <div class="status-dot ${order.status >= 1 ? 'active' : ''}"></div>
                 <div class="status-line"></div>
