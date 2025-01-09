@@ -26,50 +26,25 @@ document.addEventListener('DOMContentLoaded',  () => {
         { id: 5, pieces: 100, status: 1 }
     ];
 
-    // function asignarLinksFacturas() {
-    //     const botonesFactura = document.querySelectorAll('.invoice-btn');
-        
-    //     botonesFactura.forEach((boton, index) => {
-    //         if (facturas[index]) {
-    //             boton.addEventListener('click', () => {
-    //                 window.open(facturas[index].link, '_blank');
-    //             });
-    //         }
-    //     });
-        
-    // }
-    // document.addEventListener('DOMContentLoaded', asignarLinksFacturas);
+//window.addEventListener('load', cargarDatos());
 
-
-window.addEventListener('load', obtenerDatos());
-
-
-async function obtenerDatos() {
+async function cargarDatos() {
     try {
-      const response = await fetch('/datos/base_status.xlsx', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      // Verificar el tipo de contenido
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('La respuesta no es JSON');
-      }
-      
-      const datos = await response.json();
-      console.log(datos,'aqui estan los malditos datos');
-      displayOrders(datos);
+        const response = await fetch('http://localhost:3000/datos', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        const datos = await response.json();
+        console.log(datos);
+        displayOrders(datos);
     } catch (error) {
-      console.error('Error:', error);
+        console.error('Error:', error);
     }
-  }
+}
+
 
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -79,7 +54,7 @@ async function obtenerDatos() {
         if (email === validUser.email && password === validUser.password) {
             loginSection.style.display = 'none';
             ordersSection.style.display = 'block';
-            obtenerDatos();
+            cargarDatos();
             
         } else {
             alert('Credenciales inválidas');

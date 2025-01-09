@@ -1,37 +1,28 @@
 const express = require('express');
-const app = express();
-//const cors = require('cors');
-const path = require('path');
 const XLSX = require('xlsx');
-const { leerExcel } = require('./excel_config');
+const path = require('path');
+const fs = require('fs');
 
-app.use(express.static(__dirname));
-app.use('/style.css', express.static(path.join(__dirname, 'style.css')));
-app.use('/script.js', express.static(path.join(__dirname, 'script.js')));
+const app = express();
 app.use(express.static('public'));
-app.use(express.json());
-// Ruta para obtener datos de Excel
-app.get('/datos', (res, req) => { 
-    console.log('Ruta /datos accedida');
+
+app.get('/datos/', (req, res) => {
     try {
-        const datos = leerExcel('/datos/base_status.xlsx');
-        console.log('Estructura del archivo Excel:', {
-            numeroFilas: datos.length,
-            primeraFila: datos[0],
-            ultimaFila: datos[datos.length - 1]
-        });
-        
-        if (!datos || !Array.isArray(datos)) {
-            throw new Error('El formato de datos no es válido');
+        // Validar que el archivo existe
+        if (!fs.existsSync('datos/base_status.xlsx')) {
+            return res.status(404).json({ error: 'Archivo no encontrado' });
         }
         
+        const workbook = XLSX.readFile('datos/base_status.xlsx');
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const datos = XLSX.utils.sheet_to_json(sheet); 
+
+        // Configurar headers correctamente
+        res.setHeader('Content-Type', 'application/json');
         res.json(datos);
+        
     } catch (error) {
-        console.error('Error detallado:', error.message);
-        res.status(500).json({ 
-            error: 'Error al leer Excel',
-            detalles: error.message 
-        });
+        res.status(500).json({ error: error.message });
     }
 });
-app.listen(3000, () => console.log('Servidor corriendo en puerto 3000'));
+    app.listen(3000, () => console.log('Servidor corriendo en puerto 3000'));
