@@ -110,26 +110,48 @@ header {
 
 .order-status {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
 .status-dot {
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: #ddd;
-}
-
-.status-dot.active {
-  background: var(--primary-color);
+  background-color: #e0e0e0; /* Color por defecto */
+  transition: background-color 0.3s ease;
 }
 
 .status-line {
   flex: 1;
   height: 2px;
-  background: #ddd;
-  margin: 9px 10px;
+  background-color: #e0e0e0;
+}
+
+/* Estados activos con diferentes colores */
+.status-dot.active[data-status="1"] {
+  background-color: #ffc107; /* Amarillo - Pedido Ingresado */
+}
+
+.status-dot.active[data-status="2"] {
+  background-color: #2196f3; /* Azul - Surtiendo */
+}
+
+.status-dot.active[data-status="3"] {
+  background-color: #ff9800; /* Naranja - Empacando */
+}
+
+.status-dot.active[data-status="4"] {
+  background-color: #4caf50; /* Verde - Pedido Listo */
+}
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+  margin-top: 1rem;
 }
 
 /* Responsive Design */

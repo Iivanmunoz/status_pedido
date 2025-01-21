@@ -6,12 +6,7 @@ document.addEventListener('DOMContentLoaded',  () => {
     const ordersList = document.getElementById('ordersList');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // const facturas = [
 
-    //     {id: 3, link:"https://sistema.ncontrol.mx/PortalCliente/Comprobante40/7F4471EF-48D9-6C4E-AEEB-7F011104FB7B"},
-    //     {id: 4, link:"https://sistema.ncontrol.mx/PortalCliente/Comprobante40/DE2364C4-1CBB-9243-932F-3F5D394771F4"}
-
-    // ]
 
     // Sample user data (in a real app, this would be in a backend)
     const validUser = {
@@ -79,28 +74,61 @@ async function cargarDatos() {
         const card = document.createElement('div');
         card.className = 'order-card';
         
+        // Crear ID único por pedido
+        const collapseId = `collapse-${order.num_pedido}`;
+        
         card.innerHTML = `
-            <h3>PEDIDO ${order.num_pedido}</h3>
-            <p>CANTIDAD DE PIEZAS: ${order.cantidad_piezas}</p>
-            <div class="order-status">
-                <div class="status-dot ${order.status >= 1 ? 'active' : ''}"></div>
-                <div class="status-line"></div>
-                <div class="status-dot ${order.status >= 2 ? 'active' : ''}"></div>
-                <div class="status-line"></div>
-                <div class="status-dot ${order.status >= 3 ? 'active' : ''}"></div>
-                <div class="status-line"></div>
-                <div class="status-dot ${order.status >= 4 ? 'active' : ''}"></div>
+            <div onclick="toggleCollapse('${collapseId}')">
+                <h3>PEDIDO #${order.num_pedido}</h3>
+                <p>CANTIDAD DE PIEZAS: ${order.cantidad_piezas}</p>
+           
+                    <div class="order-status">
+                        <div class="status-dot ${order.status_pedido >= 1 ? 'active' : ''}" data-status="1"></div>
+                        <div class="status-line"></div>
+                        <div class="status-dot ${order.status_pedido >= 2 ? 'active' : ''}" data-status="2"></div>
+                        <div class="status-line"></div>
+                        <div class="status-dot ${order.status_pedido >= 3 ? 'active' : ''}" data-status="3"></div>
+                        <div class="status-line"></div>
+                        <div class="status-dot ${order.status_pedido >= 4 ? 'active' : ''}" data-status="4"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem;">
+                        <span class="${order.status_pedido >= 1 ? 'active' : ''}">PEDIDO INGRESADO</span>
+                        <span class="${order.status_pedido >= 2 ? 'active' : ''}">SURTIENDO</span>
+                        <span class="${order.status_pedido >= 3 ? 'active' : ''}">EMPACANDO</span>
+                        <span class="${order.status_pedido >= 4 ? 'active' : ''}">PEDIDO LISTO</span>
+                    </div>
+                    
             </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem;">
-                <span>PEDIDO INGRESADO</span>
-                <span>SURTIENDO</span>
-                <span>EMPACANDO</span>
-                <span>PEDIDO LISTO</span>
+            
+            
+            <div class="collapse collapse-horizontal" id="${collapseId}">
+                <div class="modal-content">
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <strong>Fecha de pedido:</strong> ${order.fecha_pedido}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Ubicación de pedido:</strong> ${order.ubicación}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Cliente:</strong> ${order.cliente}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Status de tu pedido:</strong> ${order.status_pedido}
+                        </div>
+                        <button class="invoice-btn" onclick="window.location.href ='https://sistema.ncontrol.mx/PortalCliente/Comprobante40/DE2364C4-1CBB-9243-932F-3F5D394771F4'">Ver Factura</button>
+                        <button class="invoice-btn" onclick="window.location.href = 'https://www.paquetexpress.com.mx/rastreo/MEX01WWA194361'">Guia Pedido</button>
+                    </div>
+                </div>
             </div>
         `;
         
         return card;
-    }
+     }
+     
+
+
 });
 
 document.addEventListener('DOMContentLoaded', function() {

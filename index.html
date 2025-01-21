@@ -25,7 +25,9 @@
                 </div>
                 <button type="submit" class="login-btn">Ingresar</button>
             </form>
+            
         </div>
+
 
         <!-- Orders Section -->
         <div class="orders-container" id="ordersSection" style="display: none;" >
@@ -36,69 +38,15 @@
                 </button>
             </header>
             
-            
-            
-            <div class="orders-list" id="ordersList"  data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                <!-- Orders will be inserted here by JavaScript -->
-                 <!-- https://codepen.io/candroo/pen/wKEwRL -->
-                </div>
-              </div>
-              <div  class="collapse collapse-horizontal" id="collapseWidthExample">
-                <div class="modal-content">
-                  <div class="details-grid">
-                    <div class="detail-item">
-                      <strong>Fecha de pedido:</strong> 19/12/2024
-                    </div>
-                    <div class="detail-item">
-                      <strong>Tiempo estimado:</strong> 2 días
-                    </div>
-                    <div class="detail-item">
-                      <strong>Cliente:</strong> Juan Pérez
-                    </div>
-                    <div class="detail-item">
-                      <strong>Prioridad:</strong> Alta
-                    </div>
-                    <div class="detail-item">
-                      <strong>Ubicación:</strong> Almacén A
-                    </div>
-                    <div class="detail-item">
-                      <strong>Estado:</strong> En proceso
-                    </div>
-                    <button class="invoice-btn" onclick="window.location.href ='https://sistema.ncontrol.mx/PortalCliente/Comprobante40/DE2364C4-1CBB-9243-932F-3F5D394771F4'">Ver Factura</button>
-                    <button class="invoice-btn" onclick="window.location.href = 'https://www.paquetexpress.com.mx/rastreo/MEX01WWA194361'">Guia Pedido</button>
-                  </div>
-                </div>
-              </div>
-        <!-- <div class="order-details" style="display: none;" id="elementomodal">
-            <div class="details-grid">
-              <div>
-                <h3>Cliente:</h3>
-                <p>Juan Pérez</p>
-              </div>
-              <div>
-                <h3>ID:</h3>
-                <p>#12345</p>
-              </div>
-              <div>
-                <h3>Costo Total:</h3>
-                <p>$1,500.00</p>
-              </div>
+            <div class="orders-list" id="ordersList"  data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">     
             </div>
-            <button class="invoice-btn">Ver Factura</button>
-          </div>
-         </div> -->
-    </div>
+
+        </div>
     <script src="script.js"></script>
     <script>
-//         function toggleDetails(element) {
-//   const details = document.querySelector('.order-details');
-//   if (details) {
-//     details.style.display = details.style.display === 'none' ? 'block' : 'none';
-//   }
-// }
-// function toggleModal() {
-//         document.getElementById('orderModal').classList.toggle('show');
-//       }
+           function toggleCollapse(id) {
+        document.getElementById(id).classList.toggle('show');
+     }
     </script>
 </body>
 </html>
