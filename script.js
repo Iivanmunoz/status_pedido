@@ -1,10 +1,12 @@
-document.addEventListener('DOMContentLoaded',  () => {
 
+document.addEventListener('DOMContentLoaded',  () => {
+    
     const loginForm = document.getElementById('loginForm');
     const loginSection = document.getElementById('loginSection');
     const ordersSection = document.getElementById('ordersSection');
     const ordersList = document.getElementById('ordersList');
     const logoutBtn = document.getElementById('logoutBtn');
+    
 
 
 
@@ -14,12 +16,6 @@ document.addEventListener('DOMContentLoaded',  () => {
         password: 'password123'
     };
 
-    // Sample orders data
-    const orders = [
-        { id: 3, pieces: 100, status: 3 },
-        { id: 4, pieces: 100, status: 2 },
-        { id: 5, pieces: 100, status: 1 }
-    ];
 
 //window.addEventListener('load', cargarDatos());
 
@@ -35,10 +31,18 @@ async function cargarDatos() {
         const datos = await response.json();
         console.log(datos);
         displayOrders(datos);
+        traeStatus(datos);
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
+
+function traeStatus(datos){
+
+    const status = datos[1].status_pedido;
+  }
 
 
     loginForm.addEventListener('submit', (e) => {
@@ -69,6 +73,20 @@ async function cargarDatos() {
             ordersList.appendChild(orderCard);
         });
     }
+    // function getStatusColor(status) {
+    //     switch (status) {
+    //       case 1:
+    //         return 'blue';
+    //       case 2:
+    //         return 'yellow';
+    //       case 3:
+    //         return 'orange';
+    //       case 4:
+    //         return 'green';
+    //       default:
+    //         return 'gray';
+    //     }
+    //   }
 
     function createOrderCard(order) {
         const card = document.createElement('div');
@@ -106,7 +124,7 @@ async function cargarDatos() {
                 <div class="modal-content">
                     <div class="details-grid">
                         <div class="detail-item">
-                            <strong>Fecha de pedido:</strong> ${order.fecha_pedido}
+                            <strong>Fecha de pedido:</strong> ${(order.fecha_pedido * 86400000).toLocaleString()}
                         </div>
                         <div class="detail-item">
                             <strong>Ubicación de pedido:</strong> ${order.ubicación}
@@ -126,9 +144,6 @@ async function cargarDatos() {
         
         return card;
      }
-     
-
-
 });
 
 document.addEventListener('DOMContentLoaded', function() {
